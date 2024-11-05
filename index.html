@@ -8,61 +8,20 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        body {
-            background: linear-gradient(to bottom, #add8e6, #87ceeb);
-            /* Light blue gradient background */
-            margin: 0;
-            padding: 0;
-        }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="./css/index.css" rel="stylesheet">
+    <script src="./js/barraMenu.js"></script>
 
-        /* Sidebar styles */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            /* Full height */
-            width: 200px;
-            /* Fixed width */
-            background-color: #f8f9fa;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            /* Center items vertically */
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .sidebar .nav-link {
-            color: #5a189a;
-            /* Customize as needed */
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-
-        .header-text {
-            font-size: 2rem;
-            color: #5a189a;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-        }
-
-        /* Adjust main content to accommodate sidebar */
-        .main-content {
-            margin-left: 220px;
-            /* Same width as sidebar */
-            padding: 20px;
-        }
-    </style>
+    
 </head>
 
 <body>
 
-    <!-- Sidebar Navigation (Full height and positioned on the left) -->
-    <div class="sidebar">
+    <!-- Button to toggle sidebar -->
+    <button class="btn btn-primary d-md-none" id="toggleSidebarBtn">☰ Menu</button>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
         <h4 class="text-center mb-4">Sweet Weather</h4>
         <ul class="nav flex-column">
             <li class="nav-item">
@@ -75,10 +34,11 @@
                 <a class="nav-link" href="#">Location</a>
             </li>
         </ul>
+        <button class="btn btn-secondary d-md-none" id="closeSidebarBtn">✖ Close</button>
     </div>
 
     <!-- Main Content Area -->
-    <div class="main-content container my-5">
+    <div class="main-content" id="mainContent">
         <!-- Header -->
         <h2 class="header-text">Search by city:</h2>
 
@@ -106,9 +66,10 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
 
-    <!-- JavaScript for Weather API Call -->
-    <script src="./index.js"></script>
+    <!-- JavaScript for Weather API Call and Sidebar Toggle -->
+    <script src="./js/index.js"></script>
     
+
 </body>
 
 </html>

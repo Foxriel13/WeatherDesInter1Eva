@@ -1,0 +1,70 @@
+$sidebar-bg: #f8f9fa; // Color de fondo para la barra lateral
+
+// Mixin para box-shadow (puedes definirlo si no está ya definido)
+@mixin box-shadow($x, $y, $blur) {
+    box-shadow: $x $y $blur rgba(0, 0, 0, 0.1);
+}
+
+// Mixin para estilos de enlaces (puedes definirlo si no está ya definido)
+@mixin nav-link-styles {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh; // Altura completa
+    width: 250px; // Ancho fijo
+    background-color: $sidebar-bg;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; // Centrar elementos verticalmente
+    @include box-shadow(2px, 0, 5px); // Aplicar sombra con el mixin
+    z-index: 1000;
+    transition: transform 0.3s ease;
+
+    &.collapsed {
+        transform: translateX(-100%); // Ocultar por defecto en móvil
+    }
+
+    &.show {
+        transform: translateX(0); // Mostrar barra lateral
+    }
+
+    .nav-link {
+        @include nav-link-styles; // Aplicar estilos del mixin para enlaces
+    }
+}
+
+.main-content {
+    margin-left: 250px; // Espacio para la barra lateral en pantallas grandes
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+
+    &.collapsed {
+        margin-left: 0; // Sin margen para móvil
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: absolute; // Posición absoluta en móvil
+        transform: translateX(-100%); // Ocultar por defecto
+
+        &.show {
+            transform: translateX(0); // Mostrar barra lateral
+        }
+    }
+
+    .main-content {
+        margin-left: 0; // Sin margen para móvil
+    }
+}

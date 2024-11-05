@@ -1,0 +1,9 @@
+@mixin box-shadow($horizontal: 0, $vertical: 2px, $blur: 5px, $color: rgba(0, 0, 0, 0.1)) {
+    box-shadow: $horizontal $vertical $blur $color;
+}
+@mixin nav-link-styles {
+    color: $nav-link-color; // Color de enlace
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
