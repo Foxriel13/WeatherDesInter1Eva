@@ -10,55 +10,107 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="./css/index.css" rel="stylesheet">
+    <script src="./js/cargarPaginas.js"></script>
     <script src="./js/barraMenu.js"></script>
-
-    
 </head>
 
 <body>
 
-    <!-- Button to toggle sidebar -->
-    <button class="btn btn-primary d-md-none" id="toggleSidebarBtn">☰ Menu</button>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-md-3 col-lg-2 sidebar bg-light p-3" id="sidebar">
+                <h4 class="text-center mb-4">Sweet Weather</h4>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" id="homeSitio">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="buscarSitio">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="locationBtn">Location</a>
+                    </li>
+                </ul>
+                <button class="btn btn-secondary d-md-none" id="closeSidebarBtn">✖ Close</button>
+            </div>
 
-    <!-- Sidebar Navigation -->
-    <div class="sidebar" id="sidebar">
-        <h4 class="text-center mb-4">Sweet Weather</h4>
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Search</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Location</a>
-            </li>
-        </ul>
-        <button class="btn btn-secondary d-md-none" id="closeSidebarBtn">✖ Close</button>
-    </div>
+            <!-- Main Content Area -->
+            <div class="col-md-9 col-lg-10 main-content" id="mainContent">
+                <!-- Button to toggle sidebar -->
+                <button class="btn btn-primary d-md-none mb-3" id="toggleSidebarBtn">☰ Menu</button>
+                <div id="home">
+                    <div class="container mt-5">
+                        <!-- Welcome Section -->
+                        <div class="card bg-light text-center p-5 mb-5">
+                            <h1 class="card-title">Bienvenido a Sweet Weather</h1>
+                            <p class="card-text mt-3">
+                                ¡Descubre el clima al instante y pronósticos de 5 días para cualquier ciudad del mundo! Sweet Weather
+                                utiliza datos en tiempo real proporcionados por OpenWeather.
+                            </p>
+                            <a href="#" class="btn btn-primary mt-3" id="buscarBoton">Empezar a Buscar</a>
+                        </div>
+                    
+                        <!-- Key Features Section -->
+                        <div class="row text-center">
+                            <div class="col-md-4 mb-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="bi bi-geo-alt"></i> Clima por Ubicación</h5>
+                                        <p class="card-text">Obtén el clima actual en tu ubicación o en cualquier ciudad que elijas.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="bi bi-calendar"></i> Pronóstico de 5 Días</h5>
+                                        <p class="card-text">Consulta el pronóstico detallado de los próximos 5 días para planificar tu semana.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="bi bi-thermometer-half"></i> Datos en Tiempo Real</h5>
+                                        <p class="card-text">Recibe información en tiempo real sobre la temperatura, el clima y más.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div id="buscar" hidden>
+                    <!-- Header -->
+                    <h2 class="header-text">Buscar por ciudad:</h2>
 
-    <!-- Main Content Area -->
-    <div class="main-content" id="mainContent">
-        <!-- Header -->
-        <h2 class="header-text">Search by city:</h2>
+                    <!-- Search Form -->
+                    <form id="searchForm" class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="City" aria-label="City" id="cityInput">
+                        <button class="btn btn-primary" type="button" id="getWeatherBtn">Buscar</button>
+                    </form>
 
-        <!-- Search Form -->
-        <form id="searchForm" class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="City" aria-label="City" id="cityInput">
-            <button class="btn btn-primary" type="button" id="getWeatherBtn">Search</button>
-        </form>
+                    <!-- Weather Display Card -->
+                    <div id="weatherResult" class="card d-none">
+                        <div class="card-body text-center">
+                            <h5 class="card-title" id="cityName"></h5>
+                            <img src="" id="weatherIcon" alt="Weather Icon" class="my-3" width="80">
+                            <p class="card-text" id="weatherDescription"></p>
+                        </div>
+                    </div>
 
-        <!-- Weather Display Card -->
-        <div id="weatherResult" class="card d-none">
-            <div class="card-body text-center">
-                <h5 class="card-title" id="cityName"></h5>
-                <img src="" id="weatherIcon" alt="Weather Icon" class="my-3" width="80">
-                <p class="card-text" id="weatherDescription"></p>
+                    <!-- Forecast Container for 5-day forecast -->
+                    <div class="mt-4">
+                        <h4>5-Day Forecast</h4>
+                        <div class="row" id="forecastContainer"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS and Popper.js (necessary for Bootstrap functionality) -->
+    <!-- Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
@@ -68,7 +120,6 @@
 
     <!-- JavaScript for Weather API Call and Sidebar Toggle -->
     <script src="./js/index.js"></script>
-    
 
 </body>
 
