@@ -50,7 +50,3 @@ ClimaApp es una aplicación web que permite consultar el pronóstico del clima d
 ## Contribuciones
 
 ClimaApp es un proyecto de código abierto, y cualquier mejora o corrección es bienvenida. Los desarrolladores pueden enviar sus sugerencias a través de *pull requests* en el repositorio oficial.
-
-## Licencia
-
-Este proyecto está licenciado bajo la [Licencia MIT](LICENSE).
